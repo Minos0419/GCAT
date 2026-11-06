@@ -1,0 +1,5 @@
+dataset	query_data	ref_data	module	mask	trainer	epoch	batch_size	dropout	balance_modalities	ccc_min_pairs	prior_strength	random_seed	validation	folds
+data1	../../data/data1_st.h5ad	../../data/data1_sc.h5ad	assets/regulons/data1_collectri_min5_uncovered_denovo29.npy	../../data/data1_5fold_gene.npy	scripts/train_v1.py	10	64	0.2	true	32	3.0	11	legacy	5
+AD	../../data/AD_st.h5ad	../../data/AD_sc.h5ad	assets/regulons/AD_collectri_min5_uncovered_denovo45.npy	../../data/AD_5fold_gene.npy	scripts/train_v1.py	10	96	0.2	false	32	3.0	11	legacy	5
+dev_brain	../../data/dev_brain/st_300_dev_brain_human_x20pct.h5ad	../../data/dev_brain/sc_dev_brain_human.h5ad	assets/regulons/dev_brain_collectri_min5_uncovered_denovo46.npy	configs/masks/dev_brain_fold0.npy	scripts/train_v1.py	15	96	0.2	true	16	3.0	11	legacy	5
+heart_pcw13	../../data/heart_pcw13_st.h5ad	../../data/heart_pcw13_sc.h5ad	assets/regulons/heart_pcw13_collectri_min5_uncovered_denovo33.npy	../../data/heart_pcw13_5fold_gene.npy	scripts/train_v1.py	15	96	0.0	false	8	3.0	11	legacy	5

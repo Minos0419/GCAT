@@ -1,0 +1,33 @@
+{
+  "assignment": "assets/regulons/heart_pcw13_collectri_min5_uncovered_denovo33.npy",
+  "shape": [
+    19374,
+    47
+  ],
+  "module_semantics": "observed-TF outgoing regulons followed by unified de novo slots",
+  "model_gene_count": 19374,
+  "task_gene_count": 237,
+  "covered_task_gene_count": 237,
+  "covered_task_gene_ratio": 1.0,
+  "prior_covered_task_gene_count": 76,
+  "prior_covered_task_gene_ratio": 0.3206751054852321,
+  "valid_tf_modules_before_cap": 14,
+  "prior_module_count": 14,
+  "allocated_tf_modules": 14,
+  "de_novo_module_count": 33,
+  "de_novo_uncovered_only": true,
+  "allocated_total_modules": 47,
+  "min_targets": 5,
+  "max_targets": 0,
+  "max_modules": 0,
+  "include_regulator": true,
+  "require_regulator_in_task": true,
+  "de_novo_init_weight": 0.995,
+  "prior_source": "collectri_edge_list",
+  "edge_csv": "assets/regulons/collectri_edges.tsv",
+  "regulator_list": null,
+  "adata": [
+    "../../data/heart_pcw13_st.h5ad",
+    "../../data/heart_pcw13_sc.h5ad"
+  ]
+}

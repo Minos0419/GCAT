@@ -1,0 +1,33 @@
+{
+  "assignment": "assets/regulons/AD_collectri_min5_uncovered_denovo45.npy",
+  "shape": [
+    19374,
+    60
+  ],
+  "module_semantics": "observed-TF outgoing regulons followed by unified de novo slots",
+  "model_gene_count": 19374,
+  "task_gene_count": 348,
+  "covered_task_gene_count": 348,
+  "covered_task_gene_ratio": 1.0,
+  "prior_covered_task_gene_count": 124,
+  "prior_covered_task_gene_ratio": 0.3563218390804598,
+  "valid_tf_modules_before_cap": 15,
+  "prior_module_count": 15,
+  "allocated_tf_modules": 15,
+  "de_novo_module_count": 45,
+  "de_novo_uncovered_only": true,
+  "allocated_total_modules": 60,
+  "min_targets": 5,
+  "max_targets": 0,
+  "max_modules": 0,
+  "include_regulator": true,
+  "require_regulator_in_task": true,
+  "de_novo_init_weight": 0.995,
+  "prior_source": "collectri_edge_list",
+  "edge_csv": "assets/regulons/collectri_edges.tsv",
+  "regulator_list": null,
+  "adata": [
+    "../../data/AD_st.h5ad",
+    "../../data/AD_sc.h5ad"
+  ]
+}

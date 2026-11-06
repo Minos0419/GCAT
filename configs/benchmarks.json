@@ -1,0 +1,80 @@
+{
+  "common": {
+    "random_seed": 11,
+    "hidden_dim": 512,
+    "num_layers": 4,
+    "num_heads": 8,
+    "latent_dim": 256,
+    "decoder_hidden_dim": 512,
+    "decoder_layers": 2,
+    "lr": 0.0005,
+    "weight_decay": 0.000001,
+    "warmup_epochs": 5,
+    "amp_mode": "fp16",
+    "dropout": 0.2,
+    "gene_token_mode": "module",
+    "gene_module_num": "auto",
+    "prior_strength": 3.0,
+    "off_prior_init_std": 0.02,
+    "assignment_temperature": 1.0,
+    "dist_metric": "l2",
+    "coord_norm_mode": "pc_l2",
+    "masa_noise_rate": 0.0,
+    "masa_noise_std": 0.0,
+    "masa_mask_rate": 0.1,
+    "drop_node_rate": 0.25,
+    "pair_loss_weight": 10.0,
+    "lambda_reg": 0.1,
+    "flow_attn_layers": "last",
+    "flow_attn_mode": "gated",
+    "flow_gate_hidden_dim": 64,
+    "flow_gate_init": 0.0,
+    "ccc_topk": 64,
+    "ccc_block_size": 512,
+    "ccc_st_candidate_mode": "spatial",
+    "ccc_sc_candidate_mode": "expression",
+    "ccc_st_candidate_k": 0,
+    "ccc_sc_candidate_k": 0,
+    "ccc_sc_pca_n_components": 10,
+    "eval_every_epochs": 0
+  },
+  "datasets": {
+    "AD": {
+      "query": "AD_st.h5ad", "ref": "AD_sc.h5ad", "mask": "AD_5fold_gene.npy",
+      "module": "AD_collectri_min5_uncovered_denovo45.npy",
+      "epoch": 10, "batch_size": 96, "balance_modalities": false,
+      "ccc_min_pairs": 32, "expected_lr_programs": 62,
+      "expected_fold_genes": [72, 72, 71, 68, 65],
+      "reference": "AD_5cv_benchmark/S4",
+      "reference_merged_prefix": "AD_5cv_s4"
+    },
+    "data1": {
+      "query": "data1_st.h5ad", "ref": "data1_sc.h5ad", "mask": "data1_5fold_gene.npy",
+      "module": "data1_collectri_min5_uncovered_denovo29.npy",
+      "epoch": 10, "batch_size": 64, "balance_modalities": true,
+      "ccc_min_pairs": 32, "expected_lr_programs": 75,
+      "expected_fold_genes": [68, 68, 67, 64, 62],
+      "reference": "tune_s4/mfull/data1_bal_b64",
+      "reference_merged_prefix": "data1_bal_b64"
+    },
+    "dev_brain": {
+      "query": "dev_brain/st_300_dev_brain_human_x20pct.h5ad", "ref": "dev_brain/sc_dev_brain_human.h5ad",
+      "mask": "@package/configs/masks/dev_brain_fold0.npy",
+      "module": "dev_brain_collectri_min5_uncovered_denovo46.npy",
+      "epoch": 15, "batch_size": 96, "balance_modalities": true,
+      "ccc_min_pairs": 16, "expected_lr_programs": 17,
+      "expected_fold_genes": [54, 53, 53, 53, 53],
+      "reference": "tune_s4/mfull/dev_brain_bal",
+      "reference_merged_prefix": "dev_brain_bal"
+    },
+    "heart_pcw13": {
+      "query": "heart_pcw13_st.h5ad", "ref": "heart_pcw13_sc.h5ad", "mask": "heart_pcw13_5fold_gene.npy",
+      "module": "heart_pcw13_collectri_min5_uncovered_denovo33.npy",
+      "epoch": 15, "batch_size": 96, "balance_modalities": false, "dropout": 0.0,
+      "ccc_min_pairs": 8, "expected_lr_programs": 12,
+      "expected_fold_genes": [48, 48, 48, 47, 46],
+      "reference": "tune_s4/mfull/heart_do0e15",
+      "reference_merged_prefix": "heart_do0e15"
+    }
+  }
+}

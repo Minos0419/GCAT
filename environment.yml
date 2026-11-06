@@ -1,0 +1,26 @@
+name: gcat
+# GCAT_v2 environment — A100/3090/4090 (cu118) variant.
+# RTX 5090 (sm_120): DO NOT use this file — torch 2.5.1+cu118 has no sm_120
+# kernels. See requirements.txt 方案 B for the cu128 install order.
+channels:
+  - pytorch
+  - nvidia
+  - pyg
+  - conda-forge
+dependencies:
+  - python=3.10
+  - pytorch=2.5.1
+  - pytorch-cuda=11.8
+  - pyg=2.7.0
+  - pip
+  - pip:
+      - anndata==0.11.4
+      - entmax==1.3
+      - hdf5plugin==6.0.0
+      - mygene==3.2.2
+      - numpy==1.26.4
+      - pandas==2.3.3
+      - scanpy==1.11.5
+      - scikit-learn==1.7.2
+      - scipy==1.15.3
+      - tqdm==4.69.0
