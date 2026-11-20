@@ -4,7 +4,7 @@
 
 GCAT integrates a targeted spatial transcriptomics (ST) dataset with a matched single-cell RNA-seq (SC) reference to infer gene expression beyond the measured spatial panel. It combines intracellular regulatory programs with intercellular context through alternating gene-module and cell attention.
 
-GCAT is trained end to end from random initialization, without large-scale pretraining. This repository contains the standalone S4 benchmark implementation, including model code, regulatory priors, dataset profiles, and a five-fold evaluation runner.
+GCAT is trained end to end from random initialization, without large-scale pretraining. This repository provides the GCAT implementation, regulatory priors, and training and evaluation workflows.
 
 ## Framework
 
@@ -39,36 +39,34 @@ conda env create -f environment.yml
 conda activate gcat
 ```
 
-The environment targets PyTorch 2.5.1 with CUDA 11.8 and PyTorch Geometric 2.7.0. A compatible NVIDIA GPU is required for the standard FP16 benchmark. This CUDA 11.8 environment is not suitable for RTX 5090; see [requirements.txt](requirements.txt) for the separate CUDA 12.8 installation instructions and PyG extension dependencies. Changing the software or GPU environment can change training trajectories and numerical results.
+The environment targets PyTorch 2.5.1 with CUDA 11.8 and PyTorch Geometric 2.7.0. A compatible NVIDIA GPU is required for FP16 training. See [requirements.txt](requirements.txt) for dependencies.
 
 The recorded reproduction environment is available in [configs/reproduction_environment.json](configs/reproduction_environment.json).
 
 ## Data preparation
 
-Preprocessed expression datasets and external gene-fold masks are **not included**. Prepare the following files under a data directory of your choice:
+Preprocessed expression datasets are **not included**. Organize the ST query and SC reference files under a single data directory:
 
 ```text
 data/
 ├── AD_st.h5ad
 ├── AD_sc.h5ad
-├── AD_5fold_gene.npy
-├── data1_st.h5ad
-├── data1_sc.h5ad
-├── data1_5fold_gene.npy
-├── heart_pcw13_st.h5ad
-├── heart_pcw13_sc.h5ad
-├── heart_pcw13_5fold_gene.npy
-└── dev_brain/
-    ├── st_300_dev_brain_human_x20pct.h5ad
-    └── sc_dev_brain_human.h5ad
+├── ME_st.h5ad
+├── ME_sc.h5ad
+├── Brain_GW20_st.h5ad
+├── Brain_GW20_sc.h5ad
+├── Heart_PCW13_st.h5ad
+└── Heart_PCW13_sc.h5ad
 ```
 
-| Dataset key | Manuscript dataset | Gene-fold mask |
-| --- | --- | --- |
-| `AD` | Alzheimer's brain | External `AD_5fold_gene.npy` |
-| `data1` | Mouse embryo | External `data1_5fold_gene.npy` |
-| `dev_brain` | Brain GW20 | Included `configs/masks/dev_brain_fold0.npy` (contains all five folds) |
-| `heart_pcw13` | Heart PCW13 | External `heart_pcw13_5fold_gene.npy` |
+| Dataset | Description |
+| --- | --- |
+| `AD` | Alzheimer's brain |
+| `ME` | Mouse embryo |
+| `Brain_GW20` | Human brain at gestational week 20 |
+| `Heart_PCW13` | Human heart at post-conception week 13 |
+
+Set the query and reference paths in [configs/benchmarks.json](configs/benchmarks.json) to match these filenames before running.
 
 Inputs must use gene identifiers compatible with [assets/config.json](assets/config.json), the supplied regulon priors, and the ligand-receptor resource. ST inputs must provide spatial coordinates, normally in `adata.obsm["spatial"]`. Preflight checks input existence, shared genes, disjoint five-fold coverage, expected fold sizes, and ligand-receptor program counts before training.
 
@@ -150,4 +148,4 @@ python -m unittest discover -s tests -v
 
 **GCAT: A gene and cell attention transformer for spatial gene imputation.**
 
-Figures 1 and 2 above are reproduced from the accompanying manuscript. Publication metadata and a formal citation will be added when available. This repository currently packages the standalone S4 imputation benchmark; downstream analyses and foundation-model adapter experiments described in the manuscript are not provided as end-to-end workflows here.
+Figures 1 and 2 above are reproduced from the accompanying manuscript. Publication metadata and a formal citation will be added when available.
